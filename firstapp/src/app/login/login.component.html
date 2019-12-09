@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-sm bg-success navbar-dark">
+  <a class="navbar-brand" href="/login">
+    Hello Buddy
+  </a>
+</nav>
+<div class="container" id="container1">
+  <div class="container" id="container2">
+    <form name="form" [formGroup] = "form" (ngSubmit) = "form.valid && onSubmit()">
+      <div class="form-group">
+        <label for="emailAddress">Email</label>
+        <input type="email" class="form-control" id = "emailAddress1" placeholder="Enter your email" formControlName = "email" [ngClass] = "{'is-invalid' : form.get('email').touched && form.get('email').invalid}" />
+        <div *ngIf = "form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+          <div *ngIf = "form.get('email').errors.required">Email is required</div>
+          <div *ngIf = "form.get('email').errors.email">Email must be valid</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" id="Password" placeholder="Enter your password" formControlName = "password" [ngClass] = "{'is-invalid' : form.get('password').touched && form.get('password').invalid}" />
+        <div *ngIf = "form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
+          <div *ngIf = "form.get('password').errors.required">Password is required</div>
+          <div *ngIf = "form.get('password').errors.minlength">Password must be of minimum 8 characters</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled] = "!form.valid" (click) = "signIn();">Sign in</button>
+      </div>
+    </form>
+  </div>
+</div>
